@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1> {{ name }} </h1>
+        <form @submit.prevent="submit">
+            <p> <input type="text" v-model="nombre"> </p>
+            <p> Tu nombre es: {{ nombre | uppercase }} </p>
+
+            <div>
+                <input v-model="cursos" type="checkbox" id="vue" value="vue">
+                <label for="vue"> Vue.js </label>
+
+                <input v-model="cursos" type="checkbox" id="react" value="react">
+                <label for="react">ReactJS</label>
+
+                <input v-model="cursos" type="checkbox" id="angular" value="angular">
+                <label for="angular">Angular</label>
+            </div>
+
+            <button type="submit">Enviar</button>
+            
+        </form>
+    </div>
+    <!-- Import Vue.js -->
+    <script src="https://unpkg.com/vue@2.5.13/dist/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                name: 'Vue app',
+                nombre: '',
+                cursos: []
+            },
+            filters: {
+                uppercase: function(str) {
+                    return str.toUpperCase()
+                }
+            },
+            methods: {
+                submit: function() {
+                    console.log("On submit");
+                    console.log(this.cursos);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
